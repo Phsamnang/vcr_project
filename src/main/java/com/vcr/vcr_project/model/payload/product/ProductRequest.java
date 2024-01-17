@@ -1,4 +1,4 @@
-package com.vcr.vcr_project.model;
+package com.vcr.vcr_project.model.payload.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
-    private Integer id;
-    private Category category;
+public class ProductRequest {
+    private Integer cate_id;
     private String name;
     private double price;
 }

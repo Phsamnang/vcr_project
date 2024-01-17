@@ -1,7 +1,7 @@
 package com.vcr.vcr_project.service;
 
-import com.vcr.vcr_project.model.Product;
-import com.vcr.vcr_project.model.request.ProductRequest;
+import com.vcr.vcr_project.model.product.Product;
+import com.vcr.vcr_project.model.payload.product.ProductRequest;
 
 import java.util.List;
 

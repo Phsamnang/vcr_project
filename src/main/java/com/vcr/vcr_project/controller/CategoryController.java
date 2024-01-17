@@ -1,25 +1,24 @@
 package com.vcr.vcr_project.controller;
 
-import com.vcr.vcr_project.model.Category;
-import com.vcr.vcr_project.model.request.CategoryRequest;
+import com.vcr.vcr_project.model.category.Category;
+import com.vcr.vcr_project.model.payload.category.CategoryRequest;
 import com.vcr.vcr_project.model.response.Response;
-import com.vcr.vcr_project.service.CategoryService;
+import com.vcr.vcr_project.service.category.ICategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-public class CategoryController {
-    private final CategoryService service;
+@RestController
+public class CategoryController extends VCRRestController {
+    private final ICategoryService service;
 
-    public CategoryController(CategoryService service) {
+    public CategoryController(ICategoryService service) {
         this.service = service;
     }
     @PostMapping("/category")
-    public ResponseEntity<Response<Category>> addNewCategory(@RequestBody CategoryRequest request) {
+    public ResponseEntity<?> addNewCategory(@RequestBody CategoryRequest request) {
         Response<Category> response = Response.<Category>builder()
                 .payload(service.addNewCategory(request))
                 .message("Category has been add successfully")
