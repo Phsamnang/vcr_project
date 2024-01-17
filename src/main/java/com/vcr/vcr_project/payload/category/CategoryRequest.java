@@ -1,4 +1,4 @@
-package com.vcr.vcr_project.model.payload.category;
+package com.vcr.vcr_project.payload.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
