@@ -1,11 +1,13 @@
-FROM openjdk:21-jdk
+FROM openjdk:19-jdk
 
 WORKDIR /app
 
-COPY  app/target/demo-0.0.1-SNAPSHOT.jar .
+COPY pom.xml .
+COPY src ./src
 
+RUN mvn clean package -DskipTests
 #COPY  /build/libs/autopilot-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
