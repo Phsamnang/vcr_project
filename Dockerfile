@@ -2,7 +2,7 @@ FROM openjdk:21-jdk
 
 WORKDIR /app
 
-COPY  target/demo-0.0.1-SNAPSHOT.jar demo-0.0.1-SNAPSHOT.jar
+COPY  app/target/demo-0.0.1-SNAPSHOT.jar .
 
 #COPY  /build/libs/autopilot-0.0.1-SNAPSHOT.jar .
 
