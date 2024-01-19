@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://128.199.242.74:5432/vcr_db
+    url: jdbc:postgresql://localhost:5432/vcr_db
     username: postgres
     password: 1234
 spring.jpa:
