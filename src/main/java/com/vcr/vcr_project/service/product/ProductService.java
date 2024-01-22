@@ -1,5 +1,6 @@
 package com.vcr.vcr_project.service.product;
 
+import com.vcr.vcr_project.exception.EntityNotFoundException;
 import com.vcr.vcr_project.model.category.CategoryRepository;
 import com.vcr.vcr_project.model.product.Product;
 import com.vcr.vcr_project.model.product.ProductRepository;
@@ -24,5 +25,13 @@ public class ProductService implements IProductService {
                 .isAvailable(request.getIsAvailable())
                 .name(request.getName())
                 .category(category).build());
+    }
+    //vakhim
+
+    @Override
+    public void updateImageProduct(Long Id, String imageUrl) {
+        var product=repository.findById(Id).orElseThrow(()->new EntityNotFoundException(Product.class,"id",Id.toString()));
+        product.setImage(imageUrl);
+        repository.save(product);
     }
 }

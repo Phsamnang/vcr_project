@@ -1,4 +1,4 @@
-package com.vcr.vcr_project.common;
+package com.vcr.vcr_project.common.api;
 
 public enum StatusCode {
 

@@ -1,8 +1,11 @@
 package com.vcr.vcr_project.payload.product;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import java.math.BigDecimal;
 
@@ -10,8 +13,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductRequest {
+    @NotBlank(message = "Product can not null")
     private String name;
+    @NotNull(message = "Product Price can not null")
     private BigDecimal price;
+    @NotNull(message = "Category ID is required!")
     private Long categoryId;
     private String image;
     private Boolean isAvailable;

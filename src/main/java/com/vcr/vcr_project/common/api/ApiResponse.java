@@ -1,4 +1,4 @@
-package com.vcr.vcr_project.common;
+package com.vcr.vcr_project.common.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
