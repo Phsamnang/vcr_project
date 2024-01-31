@@ -3,11 +3,13 @@ package com.vcr.vcr_project.model.menu;
 import com.vcr.vcr_project.model.category.Category;
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tb_menu")
+@NoArgsConstructor
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

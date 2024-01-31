@@ -1,5 +1,6 @@
 package com.vcr.vcr_project.controller;
 
+import com.vcr.vcr_project.payload.menu.MenuDetailRequest;
 import com.vcr.vcr_project.payload.menu.MenuRequest;
 import com.vcr.vcr_project.service.menu.IMenuService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,11 @@ public class MenuController extends VCRRestController{
     @PostMapping("/menu")
     public ResponseEntity<?>createMenu(@RequestBody MenuRequest payload){
         service.createMenu(payload);
+        return ok();
+    }
+    @PostMapping("/menuDetail")
+    public ResponseEntity<?>createMenuDetail(@RequestBody MenuDetailRequest payload){
+        service.addMenuDetail(payload);
         return ok();
     }
 }
