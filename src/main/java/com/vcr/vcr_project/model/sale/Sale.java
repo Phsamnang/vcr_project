@@ -5,7 +5,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tbSale")
@@ -17,5 +19,7 @@ public class Sale {
     private LocalDateTime saleDate;
 
     private BigDecimal saleTotal;
+    @OneToMany(mappedBy = "sale",fetch = FetchType.EAGER)
+    private List<SaleDetail> saleDetails=new ArrayList<>();
 
 }

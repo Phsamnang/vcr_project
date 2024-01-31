@@ -1,5 +1,6 @@
 package com.vcr.vcr_project.model.sale;
 
+import com.vcr.vcr_project.model.menu.Menu;
 import com.vcr.vcr_project.model.product.Product;
 import jakarta.persistence.*;
 
@@ -11,9 +12,9 @@ public class SaleDetail {
     @EmbeddedId
     private SaleDetailId id =new SaleDetailId();
     @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
-    @MapsId("productId")
-    private Product product;
+    @JoinColumn(name = "menu_id",referencedColumnName = "id")
+    @MapsId("menuId")
+    private Menu menu;
     @ManyToOne
     @JoinColumn(name = "sale_id",referencedColumnName = "id")
     @MapsId("saleId")

@@ -1,11 +1,14 @@
 package com.vcr.vcr_project.model.menu;
 
 import com.vcr.vcr_project.model.category.Category;
+import com.vcr.vcr_project.model.sale.SaleDetail;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_menu")
@@ -21,6 +24,8 @@ public class Menu {
     private BigDecimal price;
     private BigDecimal usd;
     private String image;
+    @OneToMany(mappedBy = "menu")
+    private List<SaleDetail>saleDetails=new ArrayList<>();
 
     @Builder
 

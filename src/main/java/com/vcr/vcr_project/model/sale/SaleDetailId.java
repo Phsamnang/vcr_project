@@ -12,5 +12,5 @@ public class SaleDetailId implements Serializable {
     @Column(nullable = false, insertable = false)
     private Long saleId;
     @Column(nullable = false, insertable = false)
-    private Long productId;
+    private Long menuId;
 }
