@@ -1,4 +1,4 @@
-package com.vcr.vcr_project.utils;
+package com.vcr.vcr_project.enums;
 
 public enum TableStatus {
     AVAILABLE("available"),
@@ -6,8 +6,12 @@ public enum TableStatus {
     PENDING("pending");
 
     private final String value;
-
     TableStatus(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }

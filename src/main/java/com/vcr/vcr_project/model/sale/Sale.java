@@ -1,5 +1,6 @@
 package com.vcr.vcr_project.model.sale;
 
+import com.vcr.vcr_project.enums.SaleStatus;
 import com.vcr.vcr_project.model.table.TableSale;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -26,9 +27,12 @@ public class Sale {
     @CreationTimestamp
     private LocalDateTime saleDate;
     private BigDecimal saleTotal= BigDecimal.valueOf(0);
+    private BigDecimal receiveMoney=BigDecimal.valueOf(0);
+    private String status= SaleStatus.UNPAID.toString();
     @ManyToOne
     @JoinColumn(name = "table_id", referencedColumnName = "id")
     private TableSale tableSale;
+
     @OneToMany(mappedBy = "sale", fetch = FetchType.EAGER)
     private List<SaleDetail> saleDetails = new ArrayList<>();
 

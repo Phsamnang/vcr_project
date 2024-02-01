@@ -1,7 +1,7 @@
 package com.vcr.vcr_project.model.table;
 
 import com.vcr.vcr_project.model.sale.Sale;
-import com.vcr.vcr_project.utils.TableStatus;
+import com.vcr.vcr_project.enums.TableStatus;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class TableSale {
     private Long id;
     @Column(unique = true)
     private String name;
-    private String status = String.valueOf(TableStatus.AVAILABLE);
+    private String status =TableStatus.UNAVAILABLE.toString();
     @OneToMany(mappedBy = "tableSale")
     private List<Sale> sales = new ArrayList<>();
 

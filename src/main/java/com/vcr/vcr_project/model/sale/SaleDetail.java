@@ -1,5 +1,6 @@
 package com.vcr.vcr_project.model.sale;
 
+import com.vcr.vcr_project.enums.SaleDetailStatus;
 import com.vcr.vcr_project.model.menu.Menu;
 import com.vcr.vcr_project.model.product.Product;
 import jakarta.persistence.*;
@@ -31,7 +32,7 @@ public class SaleDetail {
     private BigDecimal salePrice;
     @Column(name = "sale_amount")
     private BigDecimal saleAmount;
-
+    private String status= SaleDetailStatus.WAIT.toString();
     @Builder
     public SaleDetail(Menu menu, Sale sale, Integer saleQty, BigDecimal salePrice, BigDecimal saleAmount) {
         this.menu = menu;

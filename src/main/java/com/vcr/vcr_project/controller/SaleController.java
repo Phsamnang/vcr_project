@@ -6,10 +6,7 @@ import com.vcr.vcr_project.payload.sale.SaleRequest;
 import com.vcr.vcr_project.service.sale.ISaleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1")
@@ -27,5 +24,10 @@ public class SaleController extends VCRRestController {
     public ResponseEntity<?> createOrder(@RequestBody SaleDetailRequest request) {
         service.createOrder(request);
         return ok();
+    }
+
+    @GetMapping("/sale/table/{id}")
+    public ResponseEntity<?> getSaleBYTable(@PathVariable("id") Long tableId) {
+        return ok(service.getSaleByTable(tableId));
     }
 }

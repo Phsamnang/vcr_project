@@ -1,5 +1,6 @@
 package com.vcr.vcr_project.service.sale;
 
+import com.vcr.vcr_project.enums.SaleStatus;
 import com.vcr.vcr_project.exception.EntityNotFoundException;
 import com.vcr.vcr_project.model.menu.Menu;
 import com.vcr.vcr_project.model.menu.MenuRepository;
@@ -11,12 +12,16 @@ import com.vcr.vcr_project.model.stock.StockRepository;
 import com.vcr.vcr_project.model.table.TableSale;
 import com.vcr.vcr_project.model.table.TableSaleRepository;
 import com.vcr.vcr_project.payload.sale.SaleDetailRequest;
+import com.vcr.vcr_project.payload.sale.SaleDetailResponse;
 import com.vcr.vcr_project.payload.sale.SaleRequest;
-import com.vcr.vcr_project.utils.TableStatus;
+import com.vcr.vcr_project.enums.TableStatus;
+import com.vcr.vcr_project.payload.sale.SaleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -54,5 +59,17 @@ public class SaleService implements ISaleService {
             stockRepository.save(stock);
         });
 
+    }
+
+    @Override
+    public SaleResponse getSaleByTable(Long tableId) {
+        var table=tableSaleRepository.findById(tableId).orElseThrow(()->new EntityNotFoundException(TableSale.class,"Table not found"));
+        var sale=saleRepository.findByTableSaleAndStatus(table, SaleStatus.UNPAID.toString());
+
+        List<SaleDetailResponse> saleDetailResponses=sale.getSaleDetails().stream().map(
+                s->SaleDetailResponse.builder().item(s.getMenu().getName()).QTY(s.getSaleQty())
+                        .price(s.getSalePrice()).amount(s.getSaleAmount()).status(s.getStatus()).build()
+        ).collect(Collectors.toList());
+        return SaleResponse.builder().tableName(table.getName()).totalAmount(sale.getSaleTotal()).orders(saleDetailResponses).build();
     }
 }
