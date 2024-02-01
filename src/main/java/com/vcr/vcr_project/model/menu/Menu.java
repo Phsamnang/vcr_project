@@ -4,7 +4,9 @@ import com.vcr.vcr_project.model.category.Category;
 import com.vcr.vcr_project.model.sale.SaleDetail;
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.List;
 @Entity
 @Table(name = "tb_menu")
 @NoArgsConstructor
+@Getter
+@Setter
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +29,7 @@ public class Menu {
     private BigDecimal usd;
     private String image;
     @OneToMany(mappedBy = "menu")
-    private List<SaleDetail>saleDetails=new ArrayList<>();
+    private List<MenuDetail>menuDetails=new ArrayList<>();
 
     @Builder
 

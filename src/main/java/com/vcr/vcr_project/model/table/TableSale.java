@@ -1,9 +1,15 @@
 package com.vcr.vcr_project.model.table;
 
+import com.vcr.vcr_project.model.sale.Sale;
+import com.vcr.vcr_project.utils.TableStatus;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_table_sale")
@@ -12,9 +18,16 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TableSale {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String name;
-    private Boolean status=true;
+    private String status = String.valueOf(TableStatus.AVAILABLE);
+    @OneToMany(mappedBy = "tableSale")
+    private List<Sale> sales = new ArrayList<>();
 
+    @Builder
+    public TableSale(String name) {
+        this.name = name;
+    }
 }

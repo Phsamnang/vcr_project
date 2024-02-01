@@ -43,7 +43,8 @@ public class MenuService implements IMenuService {
                         .menu(menu)
                         .product(product)
                         .numberMenu(payload.numberMenu())
-                        .useProduct(payload.useProduct()).build()
+                        .useProduct(payload.useProduct())
+                        .build()
         );
     }
 }
