@@ -20,6 +20,10 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public void addNewCategory(CategoryRequest request) {
+        var c=repository.findByName(request.getName());
+        if(c.isPresent()){
+            throw new IllegalArgumentException(request.getName()+" is already exist!");
+        }
         repository.save(Category.builder().name(request.getName()).build());
     }
 
