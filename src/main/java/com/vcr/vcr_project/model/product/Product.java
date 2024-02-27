@@ -17,20 +17,20 @@ public class Product {
   @Column(name = "product_name",nullable = false)
   private String name;
   private String image;
-  @Column(name = "usd_price",nullable = false)
+/*  @Column(name = "usd_price",nullable = false)
   private BigDecimal price;
   @Column(name = "riel_price",nullable = false)
-  private BigDecimal rielPrice;
+  private BigDecimal rielPrice;*/
   private Boolean isAvailable=true;
   @ManyToOne
   @JoinColumn(name = "category_id",referencedColumnName = "id")
   private Category category;
 @Builder
-  public Product(String name, String image, BigDecimal price, BigDecimal rielPrice, Boolean isAvailable, Category category) {
+  public Product(String name, String image,Boolean isAvailable, Category category) {
     this.name = name;
     this.image = image;
-    this.price = price;
-    this.rielPrice = rielPrice;
+  /*  this.price = price;
+    this.rielPrice = rielPrice;*/
     this.isAvailable = isAvailable;
     this.category = category;
   }

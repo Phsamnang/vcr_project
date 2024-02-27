@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface IProductService {
    void createProduct(ProductRequest request);
-   //loy men ke
-   //Orrr
+
    void updateImageProduct(Long Id,String imageUrl);
 }

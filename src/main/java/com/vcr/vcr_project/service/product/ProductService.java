@@ -23,8 +23,6 @@ public class ProductService implements IProductService {
           BigDecimal riel=new BigDecimal(4000);
            var category= categoryRepository.findById(request.getCategoryId()).get();
       var product=repository.save(Product.builder().image(request.getImage())
-                .price(request.getPrice().divide(riel))
-                .rielPrice(request.getPrice())
                 .isAvailable(request.getIsAvailable())
                 .name(request.getName())
                 .category(category).build());

@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 public class ProductRequest {
     @NotBlank(message = "Product can not null")
     private String name;
-    @NotNull(message = "Product Price can not null")
     private BigDecimal price;
     @NotNull(message = "Category ID is required!")
     private Long categoryId;

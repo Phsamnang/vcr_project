@@ -17,7 +17,7 @@ public class ProductController extends VCRRestController {
         service.createProduct(request);
         return ok();
     }
-    @PutMapping("product/{id}")
+    @PatchMapping ("product/{id}")
     public ResponseEntity<?>updateImageProduct(@PathVariable("id") Long id,@RequestParam String file){
         service.updateImageProduct(id,file);
         return ok();

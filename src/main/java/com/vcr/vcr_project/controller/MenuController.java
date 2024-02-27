@@ -20,7 +20,7 @@ public class MenuController extends VCRRestController{
         service.createMenu(payload);
         return ok();
     }
-    @PostMapping("/menuDetail")
+    @PostMapping("/menu-detail")
     public ResponseEntity<?>createMenuDetail(@RequestBody MenuDetailRequest payload){
         service.addMenuDetail(payload);
         return ok();
