@@ -12,14 +12,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1")
 public class ProductController extends VCRRestController {
     private final IProductService service;
+
     @PostMapping("/product")
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProductRequest request) {
         service.createProduct(request);
         return ok();
     }
-    @PatchMapping ("product/{id}")
-    public ResponseEntity<?>updateImageProduct(@PathVariable("id") Long id,@RequestParam String file){
-        service.updateImageProduct(id,file);
+
+    @PatchMapping("product/{id}")
+    public ResponseEntity<?> updateImageProduct(@PathVariable("id") Long id, @RequestParam String file) {
+        service.updateImageProduct(id, file);
         return ok();
+    }
+
+    @GetMapping("/products")
+    public ResponseEntity<?> getAllProducts() {
+        return ok(service.getAllProducts());
     }
 }

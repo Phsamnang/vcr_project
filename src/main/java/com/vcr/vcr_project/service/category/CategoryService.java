@@ -43,7 +43,7 @@ public class CategoryService implements ICategoryService {
         List<ProductResponse> productResponses = category.getProducts().stream()
                 .filter(product -> product.getIsAvailable()).map(product -> ProductResponse.builder().productName(product.getName())
                         .productId(product.getId())
-                        .image(product.getImage()).build()).collect(Collectors.toList());
+                        .categoryName(product.getCategory().getName()).build()).collect(Collectors.toList());
         return MainCategoryResponse
                 .builder()
                 .categoryId(category.getId())

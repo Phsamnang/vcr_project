@@ -7,10 +7,13 @@ import com.vcr.vcr_project.model.product.ProductRepository;
 import com.vcr.vcr_project.model.stock.Stock;
 import com.vcr.vcr_project.model.stock.StockRepository;
 import com.vcr.vcr_project.payload.product.ProductRequest;
+import com.vcr.vcr_project.payload.product.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +38,16 @@ public class ProductService implements IProductService {
         var product=repository.findById(Id).orElseThrow(()->new EntityNotFoundException(Product.class,"id",Id.toString()));
         product.setImage(imageUrl);
         repository.save(product);
+    }
+
+    @Override
+    public List<ProductResponse> getAllProducts() {
+        var products=repository.findAll();
+        List<ProductResponse> responses=products
+                .stream().map(product -> ProductResponse.builder().productId(product.getId())
+                        .productName(product.getName())
+                        .categoryName(product.getCategory().getName()).build()).collect(Collectors.toList());
+        return responses;
     }
 }
 

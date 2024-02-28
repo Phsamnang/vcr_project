@@ -4,5 +4,5 @@ import lombok.Builder;
 
 import java.math.BigDecimal;
 @Builder
-public record ProductResponse(Long productId, String productName,String image) {
+public record ProductResponse(Long productId, String productName,String categoryName) {
 }
