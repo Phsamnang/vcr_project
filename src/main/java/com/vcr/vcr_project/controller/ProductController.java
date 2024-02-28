@@ -1,5 +1,6 @@
 package com.vcr.vcr_project.controller;
 
+import com.vcr.vcr_project.payload.product.ProductPriceRequest;
 import com.vcr.vcr_project.payload.product.ProductRequest;
 import com.vcr.vcr_project.service.product.IProductService;
 import jakarta.validation.Valid;
@@ -28,5 +29,10 @@ public class ProductController extends VCRRestController {
     @GetMapping("/products")
     public ResponseEntity<?> getAllProducts() {
         return ok(service.getAllProducts());
+    }
+    @PutMapping("/product/price")
+    public ResponseEntity<?>addProductPrice(@RequestBody ProductPriceRequest request){
+        service.productPrice(request);
+        return ok();
     }
 }
