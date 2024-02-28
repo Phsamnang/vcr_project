@@ -145,7 +145,8 @@ public enum StatusCode {
     BILL_OVERDUE(400, "Bill is overdue" ),
     SEND_OTP_FAILED(503, "sent otp failed"),
     INVOICE_NO_EXIST(403, "Invoice no exist"),
-    TRIAL_VERSION(400, "Trial version" );
+    TRIAL_VERSION(400, "Trial version" ),
+    PRODUCT_NOT_FOUND(404,"Product is not found");
 
     private final String message;
     private final int code;

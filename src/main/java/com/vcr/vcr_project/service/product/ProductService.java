@@ -46,6 +46,7 @@ public class ProductService implements IProductService {
         List<ProductResponse> responses=products
                 .stream().map(product -> ProductResponse.builder().productId(product.getId())
                         .productName(product.getName())
+                        .stockQty(stockRepository.findByProduct(product).getNumber())
                         .categoryName(product.getCategory().getName()).build()).collect(Collectors.toList());
         return responses;
     }
