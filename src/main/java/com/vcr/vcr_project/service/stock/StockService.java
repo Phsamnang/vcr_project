@@ -21,7 +21,7 @@ public class StockService implements IStockService{
                 ()->new BusinessException(StatusCode.PRODUCT_NOT_FOUND)
         );
         var stock=stockRepository.findByProduct(p);
-        stock.setNumber(payload.qty());
+        stock.setNumber(stock.getNumber()+payload.qty());
         stockRepository.save(stock);
     }
 }
