@@ -1,5 +1,7 @@
 package com.vcr.vcr_project.service.ImportProduct;
 
+import com.vcr.vcr_project.common.api.StatusCode;
+import com.vcr.vcr_project.exception.BusinessException;
 import com.vcr.vcr_project.exception.EntityNotFoundException;
 import com.vcr.vcr_project.model.Import.ImportDetail;
 import com.vcr.vcr_project.model.Import.ImportDetailRepository;
@@ -17,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +51,6 @@ public class ImportProductService implements IImportProductService {
             importProduct.setImportTotal(addTotoTal);
             importProduct.setImportUsdTotal(importProduct.getImportTotal().divide(BigDecimal.valueOf(4000)));
             importDetailRepository.save(importDeatail.get());
-
         } else {
             importDetailRepository.save(ImportDetail.builder()
                     .product(product)
@@ -69,13 +71,17 @@ public class ImportProductService implements IImportProductService {
     }
 
     @Override
-    public ImportDetailMainResponse getImportDetailById(Long id) {
-        var importProduct = importProductRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ImportProduct.class, "Import ID not found"));
-        List<ImportDetailResponse> importDetailResponses = importProduct.getImportDetails().stream().map(i -> ImportDetailResponse.builder().productName(i.getProduct().getName())
+    public ImportDetailMainResponse getImportDetailById(LocalDate date) {
+        var imp=importProductRepository.findByImportDate(date);
+
+        if (imp==null){
+         return null;
+        }
+        List<ImportDetailResponse> importDetailResponses = imp.getImportDetails().stream().map(i -> ImportDetailResponse.builder().productName(i.getProduct().getName())
                 .price(i.getImportPrice())
                 .QTY(i.getImportQty())
                 .amount(i.getAmount()).build()).collect(Collectors.toList());
         return ImportDetailMainResponse.builder()
-                .importId(importProduct.getId()).usdTotal(importProduct.getImportUsdTotal()).importTotal(importProduct.getImportTotal()).importDetails(importDetailResponses).build();
+                .importId(imp.getId()).usdTotal(imp.getImportUsdTotal()).importTotal(imp.getImportTotal()).importDetails(importDetailResponses).build();
     }
 }

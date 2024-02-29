@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("api/v1")
 @RequiredArgsConstructor
@@ -21,8 +23,8 @@ public class ImportController extends VCRRestController {
        service.createImportDetail(payload);
        return ok();
    }
-   @GetMapping("/import/{id}")
-    public ResponseEntity<?>getImportById(@PathVariable("id") Long id){
-       return ok(service.getImportDetailById(id));
+   @GetMapping("/import")
+    public ResponseEntity<?>getImportByDate(@RequestParam LocalDate date){
+       return ok(service.getImportDetailById(date));
    }
 }
